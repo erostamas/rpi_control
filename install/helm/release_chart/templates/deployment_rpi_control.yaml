@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rpi-control
+  #namespace: default
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: rpi-control
+  template:
+    metadata:
+      labels:
+        app: rpi-control
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: alfred
+      containers:
+      - name: rpi-control-container
+        image: erostamas/rpi_control_main:latest
+        volumeMounts:
+        - name: rpi-control-config-path
+          mountPath: "/my_files/"
+          readOnly: True
+        ports:
+        - protocol: TCP
+          containerPort: 5000
+      volumes:
+      - name: rpi-control-config-path
+        configMap:
+          name: rpi-control-config

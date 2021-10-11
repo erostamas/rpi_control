@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: erostamas-rest-service-demo
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: erostamas-rest-service
+  template:
+    metadata:
+      labels:
+        app: erostamas-rest-service
+    spec:
+      containers:
+      - name: erostamas-rest-service-container
+        image: erostamas/playground_rest_service_main:latest
+        volumeMounts:
+        - name: service-config-path
+          mountPath: "/my_files/"
+          readOnly: True
+        ports:
+        - protocol: TCP
+          containerPort: 5000
+      volumes:
+      - name: service-config-path
+        configMap:
+          name: erostamas-rest-service-config

@@ -1,0 +1,8 @@
+Package: rpi-control
+Version: 1.0
+Architecture: all
+Maintainer: Tamas Eros <tamas.eros1@gmail.com>
+Installed-Size: 10
+Section: admin
+Priority: optional
+Description: Rest service for rpi

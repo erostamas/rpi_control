@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: erostamas-rest-service-demo
+  namespace: default
+spec:
+  hostNetwork: true
+  containers:
+    - name: erostamas-rest-service-container
+      image: erostamas/playground_rest_service_main:latest
+      ports:
+      - protocol: TCP
+        containerPort: 5000

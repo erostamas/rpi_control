@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rpi-control-config
+data:
+  config.json: |
+    {
+      "the_number": 64
+    }

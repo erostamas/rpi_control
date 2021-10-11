@@ -3,9 +3,9 @@ Description=rest api service for gpio state access
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/rpi_rest_api.py
+ExecStart=/usr/bin/rpi_control.py
 Restart=always
-User=pi
+User=erostamas
 
 [Install]
 WantedBy=multi-user.target
