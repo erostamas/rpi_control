@@ -7,7 +7,8 @@ RUN apt-get install -y python3 \
                        curl \
                        wget
 
-RUN python3 -m pip install flask
+RUN python3 -m pip install flask \
+                           RPi.GPIO
 
 ADD rpi_control.py /usr/bin/
 

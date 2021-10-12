@@ -18,6 +18,8 @@ spec:
       containers:
       - name: rpi-control-container
         image: erostamas/rpi_control_main:latest
+        securityContext:
+          privileged: true
         volumeMounts:
         - name: rpi-control-config-path
           mountPath: "/my_files/"
