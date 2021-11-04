@@ -11,7 +11,3 @@ RUN python3 -m pip install flask \
                            RPi.GPIO
 
 ADD rpi_control.py /usr/bin/
-
-WORKDIR /
-
-ENTRYPOINT /usr/bin/rpi_control.py

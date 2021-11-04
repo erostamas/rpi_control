@@ -1,10 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: rpi-control
   #namespace: default
 spec:
-  replicas: {{ .Values.replicaCount }}
+  #replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: rpi-control
@@ -13,11 +13,20 @@ spec:
       labels:
         app: rpi-control
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: alfred
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: sbc_type
+                operator: In
+                values:
+                - rpi3
+                - bpizero
       containers:
       - name: rpi-control-container
         image: erostamas/rpi_control_main:latest
+        command: ["/usr/bin/rpi_control.py"]
         securityContext:
           privileged: true
         volumeMounts:
